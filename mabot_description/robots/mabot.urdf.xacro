@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<robot name="mabot" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find mabot_description)/urdf/body/body.urdf.xacro"/>
+  <link name="base_footprint"/>
+
+  <xacro:base parent="base_footprint">
+    <origin xyz="0 0 0"/>
+  </xacro:base>
+</robot>
