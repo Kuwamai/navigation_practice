@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find mabot_description)/urdf/body/body.gazebo.xacro" />
   <xacro:macro name="caster" params="parent *joint_origin">
     <joint name="$caster_joint" type="fixed">
       <xacro:insert_block name="joint_origin" />
