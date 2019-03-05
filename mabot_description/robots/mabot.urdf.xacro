@@ -25,7 +25,7 @@
   
   <!-- ===========  Transmission ============ -->
   <xacro:wheel_trans prefix="right" interface="hardware_interface/VelocityJointInterface" />
-  <xacro:wheel_trans prefix="right" interface="hardware_interface/VelocityJointInterface" />
+  <xacro:wheel_trans prefix="left" interface="hardware_interface/VelocityJointInterface" />
 
   <!-- =============== Gazebo =============== -->
   <gazebo>
