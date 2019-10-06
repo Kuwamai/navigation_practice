@@ -13,6 +13,9 @@
         <geometry>
           <sphere radius="0.05"/>
         </geometry>
+        <material name="cyan">
+          <color rgba="0 1 1 1"/>
+        </material>
       </visual>
 
       <collision>
