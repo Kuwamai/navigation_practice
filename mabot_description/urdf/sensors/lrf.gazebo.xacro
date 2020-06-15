@@ -1,35 +1,35 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
-  <xacro:macro name="lrf_gazebo" params="prefix base_rad rad_range min_range max_range">
+  <xacro:macro name="lrf_gazebo" params="prefix rad_range min_range max_range">
     <gazebo reference="${prefix}_lrf_link">
       <sensor type="ray" name="${prefix}_lrf_sensor">
         <pose>0 0 0 0 0 0</pose>
         <visualize>false</visualize>
-        <update_rate>50</update_rate>
+        <update_rate>10</update_rate>
         <ray>
           <scan>
             <horizontal>
               <samples>720</samples>
               <resolution>1</resolution>
-              <min_angle>-1.570796</min_angle>
-              <max_angle>1.570796</max_angle>
+              <min_angle>${-rad_range/2}</min_angle>
+              <max_angle>${rad_range/2}</max_angle>
             </horizontal>
           </scan>
 
           <range>
-            <min>0.10</min>
-            <max>20.0</max>
+            <min>${min_range}</min>
+            <max>${max_range}</max>
             <resolution>0.01</resolution>
           </range>
           
           <noise>
             <type>gaussian</type>
             <mean>0.0</mean>
-            <stddev>0.01</stddev>
+            <stddev>0.03</stddev>
           </noise>
         </ray>
         
-        <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+        <plugin name="gazebo_ros_lidar_controller" filename="libgazebo_ros_laser.so">
           <topicName>/mabot/laser/scan</topicName>
           <frameName>${prefix}_lrf_link</frameName>
         </plugin>
