@@ -2,12 +2,14 @@
   <!-- arguments -->
   <arg name="model" default="$(find mabot_description)/robots/mabot.urdf.xacro"/>
   <arg name="gui" default="True" />
-  <!-- prameters -->
+  <!-- parameters -->
   <param name="robot_description" command="$(find xacro)/xacro --inorder $(arg model)"/>
   <!-- nodes -->
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
   <node if="$(arg gui)" name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />
+  <!--
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+  -->
   <!-- rviz -->
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find mabot_description)/launch/config/urdf.rviz" required="true" />
 </launch>
