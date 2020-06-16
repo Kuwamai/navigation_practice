@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+  <world name="willow_garage">
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <include>
+      <name>willow_garage0</name>
+      <uri>model://willowgarage</uri>
+      <static>true</static>
+      <pose>-25 -25 0.001 0 0 0</pose>
+    </include>
+
+<include>
+<name>beer0</name>
+<uri>model://coke_can</uri>
+<static>true</static>
+<pose>1 1 0 0 0 0</pose>
+</include>
+  </world>
+</sdf>
