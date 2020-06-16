@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<robot name="mabot" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find mabot_description)/urdf/body/body.urdf.xacro"/>
+  <xacro:include filename="$(find mabot_description)/urdf/wheel/wheel.urdf.xacro"/>
+  <xacro:include filename="$(find mabot_description)/urdf/caster/caster.urdf.xacro"/>
+  <xacro:include filename="$(find mabot_description)/urdf/sensors/lrf.urdf.xacro"/>
+  <link name="base_footprint"/>
+
+  <xacro:base parent="base_footprint">
+    <origin xyz="0 0 0"/>
+  </xacro:base>
+
+  <xacro:wheel prefix="right" parent="base_link">
+    <origin xyz="0.1 -0.13 0.0" rpy="1.57 0 0" />
+    <axis xyz="0 0 -1" />
+  </xacro:wheel>
+  
+  <xacro:wheel prefix="left" parent="base_link">
+    <origin xyz="0.1 0.13 0.0" rpy="-1.57 0 0" />
+    <axis xyz="0 0 1" />
+  </xacro:wheel>
+
+  <xacro:lrf_sensor prefix="top" parent="base_link">
+    <origin xyz="0 0 0.2" rpy="0 0 0" />
+  </xacro:lrf_sensor>
+  
+  <xacro:caster parent="base_link">
+    <origin xyz="-0.15 0 -0.05"/>
+  </xacro:caster>
+  
+  <!-- ===========  Transmission ============ -->
+  <xacro:wheel_trans prefix="right" interface="hardware_interface/VelocityJointInterface" />
+  <xacro:wheel_trans prefix="left" interface="hardware_interface/VelocityJointInterface" />
+
+  <!-- =============== Gazebo =============== -->
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/mabot</robotNamespace>
+    </plugin>
+  </gazebo>
+
+  <xacro:base_gazebo/>
+  <xacro:wheel_gazebo prefix="right" />
+  <xacro:wheel_gazebo prefix="left" />
+  <xacro:caster_gazebo/>
+  <xacro:lrf_gazebo prefix="top" rad_range="${radians(180)}" min_range="0.1" max_range="5.0"/>
+</robot>
