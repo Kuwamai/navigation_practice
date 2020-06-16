@@ -3,6 +3,7 @@
   <xacro:include filename="$(find mabot_description)/urdf/body/body.urdf.xacro"/>
   <xacro:include filename="$(find mabot_description)/urdf/wheel/wheel.urdf.xacro"/>
   <xacro:include filename="$(find mabot_description)/urdf/caster/caster.urdf.xacro"/>
+  <xacro:include filename="$(find mabot_description)/urdf/sensors/lrf.urdf.xacro"/>
   <link name="base_footprint"/>
 
   <xacro:base parent="base_footprint">
@@ -19,6 +20,10 @@
     <axis xyz="0 0 1" />
   </xacro:wheel>
 
+  <xacro:lrf_sensor prefix="top" parent="base_link">
+    <origin xyz="0 0 0.2" rpy="0 0 0" />
+  </xacro:lrf_sensor>
+  
   <xacro:caster parent="base_link">
     <origin xyz="-0.15 0 -0.05"/>
   </xacro:caster>
@@ -38,4 +43,5 @@
   <xacro:wheel_gazebo prefix="right" />
   <xacro:wheel_gazebo prefix="left" />
   <xacro:caster_gazebo/>
+  <xacro:lrf_gazebo prefix="top" rad_range="${radians(180)}" min_range="0.1" max_range="5.0"/>
 </robot>
